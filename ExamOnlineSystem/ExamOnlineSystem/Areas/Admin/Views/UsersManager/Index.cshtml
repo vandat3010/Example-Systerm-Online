@@ -1,0 +1,164 @@
+﻿@model Entity.Users
+
+@{
+    var listUsers = ViewData["ListUsers"] as Tuple<List<Entity.Users>, int>;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+<div class="content-wrapper" style="margin-left: 0px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">UserManager</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            >
+            @using (Html.BeginForm("Index", "UserManager", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="dataTables_length" id="example1_length" style="margin: 0 26px 0 28px;"><label>Show <select name="example1_length" aria-controls="example1" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> </label></div>
+                    <div class="input-group input-group-sm" style="margin: 25px 0px 0 0; width: 200px; left: 80%;">
+                        <input  class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                }
+           
+                <div class=" row">
+                    <div class="col-12">
+                        <div class="card-body">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" style=" margin: -50px 0 -14px -30px;"> <a href="/Admin/UsersManager/Create" style="font-size: 20px"> <i class="fas fa-plus-square"></i>Thêm Users</a></button>
+                            </div>
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+
+                                    <tr>
+                                        <th class="text-center">Id</th>
+                                        <th class="text-center">UserName</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Password</th>
+                                        <th class="text-center">Name</th>
+                                        @*<th class="text-center">Avartar</th>*@
+                                        <th class="text-center">Birthday</th>
+                                        <!--<-->@*th class="text-center">CreateDate</th>
+                                    <th class="text-center">ModifyDate</th>*@
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                    @foreach (var item in listUsers.Item1)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.Id</td>
+                                            <td class="text-center">@item.UserName</td>
+                                            <td class="text-center">@item.Email</td>
+                                            <td class="text-center">@item.Password</td>
+                                            <td class="text-center">@item.Name</td>
+                                            @* <td class="text-center">@item.Avatar</td>*@
+                                            @*<td>@item.ResetPasswordCode</td>*@
+                                            <td>@item.Birthday</td>
+                                            @* <td>@item.CreateDate.ToShortDateString()</td>
+                                        <td>@item.ModifyDate.ToShortDateString()</td>*@
+                                            <td>
+                                                <a class="btn-edit" href="/Admin/UsersManager/Edit?id=@item.Id" value="@item.Id"><i class="fas fa-edit"></i>Edit</a>
+                                                |
+                                                <a class="btn-delete" href="/Admin/UsersManager/Delete?id=@item.Id" value="@item.Id">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <!--<-->@*td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Password)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Avatar)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.ResetPasswordCode)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Birthday)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.ModifyDate)
+                                </td>
+                                <td class="text-center">
+                                    <a href="#"><i class="fas fa-edit"></i>Edit |</a>
+                                    <a href="#"><i class="fas fa-trash-alt"></i>Delete</a>*@
+
+
+
+                                </tbody>
+                            </table>
+                            <div style="display: table; margin: auto;">
+                                <ul class="pagination">
+                                    @for (int i = 1; i <= listUsers.Item2; i++)
+                                    {
+                                        if (i == 1)
+                                        {
+                                            <li class="page-item"><a style=" margin-top: 20px;" class="page-link bg-primary text-white" id="@i" value="@i">@i</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item"><a style=" margin-top: 20px;" class="page-link " id="@i" value="@i">@i</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<script>
+</script>
+</body>
+</html>
+
+
+
+

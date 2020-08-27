@@ -1,0 +1,106 @@
+﻿@model ExamOnlineSystem.Models.RegisterModel
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Learn Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="/Assets/Client/css/bootstrap-3.1.1.min.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Custom Theme files -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="/Assets/Client/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="/Assets/Client/css/jquery.countdown.css" />
+    <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+    <!----font-Awesome----->
+    <link href="/Assets/Client/css/font-awesome.css" rel="stylesheet">
+    <!----font-Awesome----->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+</head>
+<body>
+   
+    <!-- banner -->
+    <div class="courses_banner">
+        <div class="container">
+            <h3>Sign Up</h3>
+            <p class="description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis. Pellentesque cursus arcu id magna euismod in elementum purus molestie.
+            </p>
+            <div class="breadcrumb1">
+                <ul>
+                    <li class="icon6"><a href="/Home/Index">Home</a></li>
+                    <li class="current-page">Sign Up</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    <div class="courses_box1">
+        <div class="container">
+            @using (Html.BeginForm("SingUp", "User", FormMethod.Post, new { style= "text-align: center;width: 35%;margin: 0 auto;"}))
+            {
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "required form-control", @autofocus = "autofocus", @placeholder = "Ngô Văn A", @name = "Name", @autocomplete = "off", @value = "" })
+
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "required form-control", @autocomplete = "off", @placeholder = "S1mple", @name = "username", @value = "" })
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(model => model.Password, new { @class = "required form-control", @name = "password", @value = "" , @placeholder="Password"})
+                 </div>
+                 <div class="form-group">
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "required form-control", @name = "confirmpPassword", @value = "", @placeholder="Confirm Password" })
+                 </div>
+                <div class="form-group">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "required form-control", @autocomplete = "off", @placeholder = "a@gmail.com", @name = "email", @value = "" })
+                 </div>
+                 <div class="form-group">
+                        @Html.TextBoxFor(model => model.Birthday, new { @class = "required form-control", @autocomplete = "off", @placeholder = "S1mple", @name = "username", @value = "", @type = "date" })
+
+                  </div>
+                  <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg1 btn-block" name="submit" value="Sign up">
+                  </div>
+                    <p>Already have an account? <a href="/User/LogIn">Sign In</a></p>
+                    }
+                </div>
+        </div>
+      </div>
+  
+</body>
+</html>
+
